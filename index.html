@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIDC — From Manual to Automated: Presentation Script</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f3; color: #1a1a18; min-height: 100vh; }
+.shell { display: flex; height: 100vh; }
+.sidebar { width: 230px; flex-shrink: 0; border-right: 1px solid #e0ddd5; overflow-y: auto; padding: 16px 0; background: #eeece6; }
+.sidebar-logo { padding: 4px 16px 16px; border-bottom: 1px solid #e0ddd5; margin-bottom: 12px; }
+.sidebar-logo .org { font-size: 13px; font-weight: 600; color: #1a1a18; }
+.sidebar-logo .tagline { font-size: 11px; color: #888780; margin-top: 2px; }
+.sidebar-title { font-size: 10px; font-weight: 600; color: #aaa; text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 16px 6px; }
+.nav-item { display: flex; align-items: center; gap: 9px; padding: 7px 16px; cursor: pointer; border-left: 2px solid transparent; font-size: 13px; color: #5f5e5a; transition: all 0.15s; }
+.nav-item:hover { background: #e4e1d8; color: #1a1a18; }
+.nav-item.active { border-left-color: #1D9E75; color: #1a1a18; background: #fff; font-weight: 600; }
+.nav-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.content { flex: 1; overflow-y: auto; padding: 36px 44px; background: #fff; }
+.project-header { margin-bottom: 24px; }
+.tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.project-title { font-size: 24px; font-weight: 600; color: #1a1a18; margin-bottom: 6px; }
+.project-subtitle { font-size: 14px; color: #888780; line-height: 1.5; }
+.section { margin-bottom: 24px; }
+.section-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 10px; }
+.script-box { background: #fafaf8; border: 1px solid #e8e5dc; border-radius: 10px; padding: 20px 22px; }
+.script-line { font-size: 14px; line-height: 1.85; color: #1a1a18; }
+.script-line + .script-line { margin-top: 16px; padding-top: 16px; border-top: 1px dashed #e8e5dc; }
+.speaker { font-size: 10px; font-weight: 600; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 4px; }
+.page-tabs { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
+.page-tab { font-size: 12px; padding: 5px 14px; border-radius: 20px; border: 1px solid #ddd; cursor: pointer; background: #f5f5f3; color: #888780; transition: all 0.15s; }
+.page-tab:hover { background: #e8e5dc; }
+.page-tab.active { background: #1a1a18; color: #fff; border-color: #1a1a18; }
+.notes-box { background: #f0faf5; border-radius: 8px; padding: 14px 18px; font-size: 13px; color: #0F6E56; line-height: 1.65; border-left: 3px solid #1D9E75; }
+.progress { display: flex; align-items: center; gap: 10px; font-size: 12px; color: #aaa; margin-bottom: 24px; }
+.progress-bar { flex: 1; height: 3px; background: #e8e5dc; border-radius: 2px; overflow: hidden; }
+.progress-fill { height: 100%; background: #1D9E75; transition: width 0.3s; }
+.btn-row { display: flex; gap: 8px; margin-top: 24px; }
+.btn { font-size: 13px; padding: 8px 18px; border-radius: 8px; border: 1px solid #ddd; cursor: pointer; background: #f5f5f3; color: #1a1a18; transition: all 0.15s; font-family: inherit; }
+.btn:hover { background: #e8e5dc; }
+.btn:disabled { opacity: 0.35; cursor: default; }
+.btn-primary { background: #1a1a18; color: #fff; border-color: #1a1a18; }
+.btn-primary:hover { background: #333; }
+@media print {
+  .sidebar { display: none; }
+  .content { padding: 20px; }
+  .btn-row { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <nav class="sidebar">
+    <div class="sidebar-logo">
+      <div class="org">SIDC Systems</div>
+      <div class="tagline">Presentation Script Guide</div>
+    </div>
+    <div class="sidebar-title">Projects</div>
+  </nav>
+  <main class="content" id="content"></main>
+</div>
+
+<script>
+const projects = [
+  {
+    id: "intro", label: "Introduction", color: "#888780",
+    tag: "Opening", tagBg: "#F1EFE8", tagColor: "#5F5E5A",
+    pages: [{
+      title: "From Manual to Automated — SIDC's Digital Journey",
+      subtitle: "Opening remarks for the presentation",
+      script: [
+        { speaker: "Presenter", text: "Good [morning/afternoon], everyone. Today, we take a look back at where we started — and how far we've come." },
+        { speaker: "Presenter", text: "SIDC has always been committed to serving its members and employees with excellence. But like many cooperatives, we once relied heavily on manual processes — paper records, physical stubs, handwritten entries, and branch-by-branch data collection." },
+        { speaker: "Presenter", text: "What you're about to see is not just a list of systems. It is the story of how our team identified pain points, built solutions, and transformed the way SIDC operates — one project at a time." },
+        { speaker: "Presenter", text: "Each system you'll see today represents a real problem we faced — and a decision we made to solve it through technology." }
+      ],
+      notes: "Set a warm, reflective tone. Pause after the opening line. Let the audience settle in before moving forward."
+    }]
+  },
+  {
+    id: "pos1", label: "POS 1 (Legacy)", color: "#E24B4A",
+    tag: "Phase 1 — Early Systems", tagBg: "#FCEBEB", tagColor: "#A32D2D",
+    pages: [{
+      title: "POS 1 — The First Point of Sale System",
+      subtitle: "Our first step toward digitizing sales and inventory",
+      script: [
+        { speaker: "Presenter", text: "Our digital journey began with POS 1 — our first Point of Sale system. At its core, it was designed to process sales transactions, accept payments, and generate reports for monitoring transactions and inventory across our branches." },
+        { speaker: "Presenter", text: "This was a significant first step. Before this, everything was done manually — handwritten receipts, physical ledgers, and no centralized record of what was sold or how much inventory remained." },
+        { speaker: "Presenter", text: "POS 1 gave us a foundation. But as SIDC grew, so did its limitations. The member and item master data became outdated. Inventory variances started appearing due to system errors. And critically — the programming language it was built on became deprecated and out of support." },
+        { speaker: "Presenter", text: "Perhaps the most pressing issue: it was not BIR-compatible, which was a compliance risk we could not ignore. These challenges made it clear — we needed something better." }
+      ],
+      notes: "Acknowledge the legacy positively first before mentioning limitations. Frame the challenges as natural growth pains, not failures."
+    }]
+  },
+  {
+    id: "pos2", label: "POS 2", color: "#E24B4A",
+    tag: "Phase 1 — Early Systems", tagBg: "#FCEBEB", tagColor: "#A32D2D",
+    pages: [{
+      title: "POS 2 — A Rebuilt, Integrated System",
+      subtitle: "Addressing the design and technical debt of POS 1",
+      script: [
+        { speaker: "Presenter", text: "With the limitations of POS 1 clearly understood, we made the decision to build POS 2 from the ground up — with better coding infrastructure and the flexibility to meet cooperative-specific requirements." },
+        { speaker: "Presenter", text: "POS 2 wasn't just an upgrade. It was a complete rethink. It now covers Sales, Member Information, Inventory, Payments, Accounting and Financials, and Purchases — all in one system." },
+        { speaker: "Presenter", text: "One of the biggest wins with POS 2 is integration. It now connects directly with our other core systems — MMS, SAP, and COLA — creating a unified flow of data across the organization." },
+        { speaker: "Presenter", text: "And the compliance concern? Resolved. POS 2 is fully BIR-accredited. The migration of data from POS 1 was our main challenge, but our team managed it carefully to ensure continuity." }
+      ],
+      notes: "Highlight the integration angle — it sets up the theme that SIDC systems are connected, not siloed."
+    }]
+  },
+  {
+    id: "mms", label: "MMS", color: "#1D9E75",
+    tag: "Phase 2 — Member Services", tagBg: "#E1F5EE", tagColor: "#0F6E56",
+    pages: [
+      {
+        title: "MMS — Membership Management System",
+        subtitle: "Centralizing member records and enabling online access",
+        script: [
+          { speaker: "Presenter", text: "One of the most common frustrations our members experienced was inconsistency in their records. A member might be registered at one branch, but when they visited another, their record was missing or outdated." },
+          { speaker: "Presenter", text: "The Membership Management System — or MMS — was our answer to this problem. It is an online platform where applicants can apply for membership, and where existing members can access their own portal." },
+          { speaker: "Presenter", text: "Through MMS, members can now view their Share Capital, Dividends, and Loans in real time. They can participate in online membership registration and even engage with SIDC events like our General Assembly." },
+          { speaker: "Presenter", text: "The system is also integrated with our SIDC Membership Facebook Page, extending our reach to where our members already are. Data cleaning and migration were major challenges, but the result is a single, centralized source of truth for all member records." }
+        ],
+        notes: "Mention the Facebook integration as a crowd-pleasing moment — it shows SIDC meets members where they are. Online Payment is still lined up as a future feature."
+      },
+      {
+        title: "MMS — What's Next",
+        subtitle: "Upcoming enhancements to the membership experience",
+        script: [
+          { speaker: "Presenter", text: "MMS continues to evolve. On the roadmap is Online Payment — which will allow members to transact directly through the portal without needing to visit a branch." },
+          { speaker: "Presenter", text: "This is part of our broader vision: making SIDC services accessible anytime, anywhere, without friction." }
+        ],
+        notes: "Keep this slide brief — it's a forward-look, not a deep dive."
+      }
+    ]
+  },
+  {
+    id: "sap", label: "SAP ERP", color: "#378ADD",
+    tag: "Phase 2 — Core Operations", tagBg: "#E6F1FB", tagColor: "#185FA5",
+    pages: [{
+      title: "SAP — Enterprise Resource Planning",
+      subtitle: "Unifying finance, operations, and business intelligence",
+      script: [
+        { speaker: "Presenter", text: "As SIDC's operations expanded across multiple business units — feeds, rice, layer farms, and more — managing them through separate, disconnected systems became unsustainable." },
+        { speaker: "Presenter", text: "SAP ERP brought all of these together. Finance, procurement, inventory, sales, human resources, and operations — all running on a single integrated platform with real-time visibility." },
+        { speaker: "Presenter", text: "One of SAP's most immediate benefits was consolidated reporting. Before SAP, generating a consolidated report required collecting data from multiple branches and systems. Now, it's available in real time." },
+        { speaker: "Presenter", text: "Yes, implementing SAP in a cooperative setting is complex. Our processes don't always follow a textbook ERP model. But working closely with our implementation partner FKU, we addressed those complexities and made SAP work for SIDC." }
+      ],
+      notes: "Acknowledge the complexity honestly — it builds credibility. Mention FKU partnership by name to credit the collaboration."
+    }]
+  },
+  {
+    id: "im", label: "Inventory Mgmt.", color: "#EF9F27",
+    tag: "Phase 3 — Operations", tagBg: "#FAEEDA", tagColor: "#854F0B",
+    pages: [{
+      title: "Inventory Management System",
+      subtitle: "From manual encoding to handheld automation",
+      script: [
+        { speaker: "Presenter", text: "Before this system, receiving goods at our branches was a manual, error-prone process. Items were encoded by hand, and without a standardized procedure, discrepancies were common — wrong items, wrong quantities, mismatched records." },
+        { speaker: "Presenter", text: "The Inventory Management System was designed to fix that. It tracks goods from purchasing, through receiving, all the way to the end sale — giving us complete visibility across the supply chain." },
+        { speaker: "Presenter", text: "The most visible change? Our branch staff now receive items using handheld devices. No more manual encoding. The system validates what's being received against what was ordered — catching errors before they happen." },
+        { speaker: "Presenter", text: "This project also reflects our broader vision: transitioning from manual, paper-based operations to automated, accurate inventory management that our cooperative can rely on." }
+      ],
+      notes: "If you have photos of staff using handheld devices, this is the slide to show them. Visual proof of automation lands well with an audience."
+    }]
+  },
+  {
+    id: "dw", label: "Data Warehouse", color: "#534AB7",
+    tag: "Phase 3 — Data", tagBg: "#EEEDFE", tagColor: "#3C3489",
+    pages: [{
+      title: "Data Warehouse",
+      subtitle: "A single repository for all SIDC transaction data",
+      script: [
+        { speaker: "Presenter", text: "As we deployed more systems — POS, MMS, SAP, Inventory — we gained data. But that data was scattered across multiple sources, making reporting time-consuming and inconsistent." },
+        { speaker: "Presenter", text: "The Data Warehouse is our solution: a central repository where raw data from every system and every branch is stored in one place. When someone needs a Sales report or Inventory movement analysis, they pull from the warehouse — not from each individual branch system." },
+        { speaker: "Presenter", text: "This has dramatically improved the speed and reliability of our reports. What used to take hours of manual collection can now be done in minutes." },
+        { speaker: "Presenter", text: "As our systems continue to evolve, the Data Warehouse evolves with them. It is the backbone of SIDC's data ecosystem — and the foundation for everything that comes next." }
+      ],
+      notes: "Position the Data Warehouse as infrastructure — the unsung hero that makes everything else faster and smarter."
+    }]
+  },
+  {
+    id: "cola", label: "COLA System", color: "#1D9E75",
+    tag: "Phase 3 — Employee Benefits", tagBg: "#E1F5EE", tagColor: "#0F6E56",
+    pages: [{
+      title: "COLA System — Employee Benefits Online",
+      subtitle: "Replacing manual stubs with a digital benefits platform",
+      script: [
+        { speaker: "Presenter", text: "COLA — our Cost of Living Allowance benefit — allows employees to avail of free rice, eggs, and meat from SIDC. For years, this was tracked using physical stubs, and monitored manually by designated staff." },
+        { speaker: "Presenter", text: "As our workforce grew, the manual process became a burden. Tracking limits, preventing overuse, and reconciling stub records across branches required dedicated manpower." },
+        { speaker: "Presenter", text: "The COLA System transformed this completely. Employees can now avail their benefits at any branch — not just their home branch. Their transaction history and remaining limits are tracked in real time. And instead of a physical stub, they receive a digital record of each transaction." },
+        { speaker: "Presenter", text: "The system is still being deployed to remaining branches, but the feedback from employees has been overwhelmingly positive. It's faster, more transparent, and eliminates the risk of lost or misused stubs." }
+      ],
+      notes: "This one resonates personally with the audience — many are employees. Emphasize the convenience angle."
+    }]
+  },
+  {
+    id: "payroll", label: "Payroll System", color: "#EF9F27",
+    tag: "Phase 3 — HR & People", tagBg: "#FAEEDA", tagColor: "#854F0B",
+    pages: [{
+      title: "Payroll System",
+      subtitle: "Automating payroll from complex, manual computation",
+      script: [
+        { speaker: "Presenter", text: "SIDC's workforce operates across multiple shifts — a reality that made manual payroll computation extremely difficult. HR staff had to account for different schedules, overtime rules, absences, and deductions — all calculated by hand." },
+        { speaker: "Presenter", text: "The Payroll System automates this entire process. It tracks employee absences and attendance, then automatically computes the correct pay based on each employee's schedule and entitlements." },
+        { speaker: "Presenter", text: "The result: payroll that is faster, more accurate, and less dependent on manual effort. HR can now redirect their time from computation to more strategic people management tasks." },
+        { speaker: "Presenter", text: "This is a critical step in our HR digitalization journey — and it lays the groundwork for a fully integrated Human Resources Information System." }
+      ],
+      notes: "Tease the HRIS as the next step to build anticipation."
+    }]
+  },
+  {
+    id: "empportal", label: "Employee Portal", color: "#D4537E",
+    tag: "Phase 3 — HR & People", tagBg: "#FBEAF0", tagColor: "#993556",
+    pages: [{
+      title: "Employee Portal",
+      subtitle: "Moving internal processes from paper to online",
+      script: [
+        { speaker: "Presenter", text: "Every year, SIDC printed thousands of payslips. Employees filled out physical forms for leave requests, and HR maintained stacks of paper records. The administrative overhead was significant." },
+        { speaker: "Presenter", text: "The Employee Portal changes that. Employees now have a single online platform where they can view their payslips, file leave requests, and access company handbooks — without printing a single sheet." },
+        { speaker: "Presenter", text: "Online filing has streamlined HR workflows, reduced paper costs, and made information more accessible to employees regardless of which branch they work in." },
+        { speaker: "Presenter", text: "We are also transitioning manual internal documents to digital forms through this portal — reducing processing time and making approvals faster across the organization." }
+      ],
+      notes: "If sustainability is a value SIDC promotes, mention the environmental benefit of going paperless."
+    }]
+  },
+  {
+    id: "gam", label: "GAM Systems", color: "#534AB7",
+    tag: "Phase 4 — Member Engagement", tagBg: "#EEEDFE", tagColor: "#3C3489",
+    pages: [{
+      title: "GAM Systems — General Assembly Meeting",
+      subtitle: "Digitizing registration, voting, and raffle for our annual assembly",
+      script: [
+        { speaker: "Presenter", text: "Our General Assembly Meeting is the most important event of the SIDC calendar. It's where directors are appointed and members receive updates on cooperative performance. With thousands of members, managing it manually was a logistical challenge." },
+        { speaker: "Presenter", text: "The GAM Systems suite consists of three integrated tools: a Registration System, an Electronic Voting System, and an Electronic Raffle System." },
+        { speaker: "Presenter", text: "Registration is now centralized and integrated with both MMS and Zoom — allowing us to accommodate both in-person and online attendees seamlessly. Members are verified against our membership database in real time." },
+        { speaker: "Presenter", text: "Voting is conducted through a secure online application. Members can vote from anywhere — whether onsite or remotely — and election results are available instantly. The raffle system ensures only qualified, registered members are eligible, removing any ambiguity from the process." }
+      ],
+      notes: "Highlight the hybrid capability (F2F + online) — it shows SIDC's readiness for modern events."
+    }]
+  },
+  {
+    id: "analytics", label: "Analytics Hub", color: "#534AB7",
+    tag: "Phase 4 — Intelligence", tagBg: "#EEEDFE", tagColor: "#3C3489",
+    pages: [{
+      title: "Analytics Hub",
+      subtitle: "A unified reporting platform for data-driven decisions",
+      script: [
+        { speaker: "Presenter", text: "Having data is one thing. Being able to act on it quickly is another. The Analytics Hub was built to bridge that gap." },
+        { speaker: "Presenter", text: "It is an in-house developed reporting platform that connects to our Data Warehouse, MMS, SAP, and other systems — consolidating data into customized dashboards and reports for different users across the organization." },
+        { speaker: "Presenter", text: "Before the Analytics Hub, generating a report meant contacting multiple branches, waiting for data, and compiling it manually. Now, authorized users can access the reports they need — in the format they need — almost instantly." },
+        { speaker: "Presenter", text: "This is what data-driven decision-making looks like in practice. Not just having information — but having it organized, accessible, and actionable." }
+      ],
+      notes: "If there's a live demo or a screenshot of the dashboard, show it here. Seeing is believing."
+    }]
+  },
+  {
+    id: "website", label: "SIDC Website", color: "#378ADD",
+    tag: "Phase 4 — Brand & Presence", tagBg: "#E6F1FB", tagColor: "#185FA5",
+    pages: [{
+      title: "SIDC Website",
+      subtitle: "Our digital front door for members and the public",
+      script: [
+        { speaker: "Presenter", text: "In today's world, a cooperative's credibility is partly judged by its online presence. The SIDC website serves as our official digital storefront — the first place many potential members or partners will encounter us." },
+        { speaker: "Presenter", text: "It provides a centralized source of information about our products, services, and the SIDC story. It supports member inquiries, generates leads, and strengthens our brand visibility." },
+        { speaker: "Presenter", text: "Beyond information, the website supports our marketing and engagement efforts — ensuring that SIDC is findable, accessible, and credible in the digital space." }
+      ],
+      notes: "Keep this section concise. The website is important but not the centerpiece of this journey story."
+    }]
+  },
+  {
+    id: "m365", label: "MS Office 365", color: "#185FA5",
+    tag: "Phase 4 — Infrastructure", tagBg: "#E6F1FB", tagColor: "#0C447C",
+    pages: [{
+      title: "Microsoft Office 365",
+      subtitle: "Cloud-based collaboration for a distributed team",
+      script: [
+        { speaker: "Presenter", text: "As SIDC grew across multiple branches, collaboration became harder. Files were emailed back and forth. Versions were lost. Meetings were difficult to coordinate." },
+        { speaker: "Presenter", text: "Microsoft Office 365 gave us a cloud-based solution. Our teams now collaborate in real time on documents, communicate through Teams, and access their files from any location on any device — securely." },
+        { speaker: "Presenter", text: "Beyond collaboration, M365 reduces our IT maintenance burden. Cloud-based updates mean our tools are always current, and built-in enterprise security features protect our data and ensure compliance." }
+      ],
+      notes: "Position M365 as the glue that connects people — just like our systems connect data."
+    }]
+  },
+  {
+    id: "hci", label: "HCI Server Setup", color: "#888780",
+    tag: "Phase 4 — Infrastructure", tagBg: "#F1EFE8", tagColor: "#5F5E5A",
+    pages: [{
+      title: "HCI — Hyper-Converged Infrastructure",
+      subtitle: "On-premise server modernization for performance and reliability",
+      script: [
+        { speaker: "Presenter", text: "As our systems grew in number and complexity, so did the demands on our infrastructure. We needed a server setup that could support all of these applications reliably — without the complexity of managing separate compute, storage, and networking systems." },
+        { speaker: "Presenter", text: "The HCI setup — Hyper-Converged Infrastructure — integrates all of these into a single, centralized platform on-premise. It gives us high availability, built-in redundancy, and the ability to scale simply by adding nodes." },
+        { speaker: "Presenter", text: "This ensures that as SIDC continues to grow, our infrastructure grows with us — keeping our systems fast, available, and secure." }
+      ],
+      notes: "Frame this as the 'engine room' of SIDC's digital operations — not glamorous, but essential."
+    }]
+  },
+  {
+    id: "upcoming", label: "Coming Soon", color: "#1D9E75",
+    tag: "Roadmap", tagBg: "#E1F5EE", tagColor: "#0F6E56",
+    pages: [{
+      title: "What's Next — Systems in the Pipeline",
+      subtitle: "The next phase of SIDC's digital transformation",
+      script: [
+        { speaker: "Presenter", text: "Our journey doesn't stop here. Several projects are currently in development that will take SIDC's operations to the next level." },
+        { speaker: "Presenter", text: "The Stock Count App will make physical inventory counting faster and more accurate — giving staff an easy way to count SKUs on the floor without manual encoding." },
+        { speaker: "Presenter", text: "eCollect will equip our collectors with a digital tool for monitoring and recording collections in real time — replacing manual registers and improving cash flow visibility." },
+        { speaker: "Presenter", text: "Our HRIS will complete the HR digitalization story — shifting employee record management from manual files to a fully systemized platform. And our move to AWS will give us the ability to scale our infrastructure on demand, complementing our on-premise HCI setup." },
+        { speaker: "Presenter", text: "Each of these projects represents SIDC's ongoing commitment: to build systems that serve our members, empower our employees, and strengthen our cooperative for the future." }
+      ],
+      notes: "End this slide on an optimistic, forward-looking note. This is the 'and we're just getting started' moment."
+    }]
+  },
+  {
+    id: "close", label: "Closing", color: "#888780",
+    tag: "Closing", tagBg: "#F1EFE8", tagColor: "#5F5E5A",
+    pages: [{
+      title: "Closing — The Journey Continues",
+      subtitle: "A reflection on SIDC's transformation",
+      script: [
+        { speaker: "Presenter", text: "What you've seen today is more than a list of software systems. It is a reflection of SIDC's culture — a willingness to identify problems honestly, invest in solutions, and see them through." },
+        { speaker: "Presenter", text: "From a single POS system to an integrated ecosystem of over a dozen platforms — from physical stubs to digital portals — from branch-by-branch data collection to a centralized analytics hub — SIDC has transformed the way it works." },
+        { speaker: "Presenter", text: "None of this happened overnight. It required the dedication of our IT team, the patience of our users, and the trust of our leadership. To everyone who contributed to any of these projects: thank you." },
+        { speaker: "Presenter", text: "The road ahead is exciting. As technology continues to evolve, so will SIDC. Because at the heart of every system we build is a simple goal: to serve our members and employees better, every single day." }
+      ],
+      notes: "Deliver the closing with genuine warmth. Pause on 'thank you' — let it land. This is the emotional high point."
+    }]
+  }
+];
+
+let currentProject = 0;
+let currentPage = 0;
+
+function renderSidebar() {
+  const nav = document.querySelector('.sidebar');
+  nav.innerHTML = `<div class="sidebar-logo"><div class="org">SIDC Systems</div><div class="tagline">Presentation Script Guide</div></div><div class="sidebar-title">Projects</div>`;
+  projects.forEach((p, i) => {
+    const el = document.createElement('div');
+    el.className = 'nav-item' + (i === currentProject ? ' active' : '');
+    el.innerHTML = `<span class="nav-dot" style="background:${p.color}"></span><span>${p.label}</span>`;
+    el.onclick = () => { currentProject = i; currentPage = 0; render(); };
+    nav.appendChild(el);
+  });
+}
+
+function renderContent() {
+  const p = projects[currentProject];
+  const page = p.pages[currentPage];
+  const total = projects.reduce((a, x) => a + x.pages.length, 0);
+  let done = 0;
+  for (let i = 0; i < currentProject; i++) done += projects[i].pages.length;
+  done += currentPage + 1;
+  const pct = Math.round((done / total) * 100);
+
+  let tabs = '';
+  if (p.pages.length > 1) {
+    tabs = '<div class="page-tabs">' + p.pages.map((pg, i) =>
+      `<div class="page-tab${i === currentPage ? ' active' : ''}" onclick="goPage(${i})">Page ${i + 1}</div>`
+    ).join('') + '</div>';
+  }
+
+  const scriptHTML = page.script.map(s =>
+    `<div class="script-line"><div class="speaker">${s.speaker}</div>${s.text}</div>`
+  ).join('');
+
+  document.getElementById('content').innerHTML = `
+    <div class="progress">
+      <span>${done} / ${total}</span>
+      <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+      <span>${pct}%</span>
+    </div>
+    <div class="project-header">
+      <div class="tag" style="background:${p.tagBg};color:${p.tagColor}">${p.tag}</div>
+      <div class="project-title">${page.title}</div>
+      <div class="project-subtitle">${page.subtitle}</div>
+    </div>
+    ${tabs}
+    <div class="section">
+      <div class="section-label">Presentation script</div>
+      <div class="script-box">${scriptHTML}</div>
+    </div>
+    <div class="section">
+      <div class="section-label">Presenter notes</div>
+      <div class="notes-box">${page.notes}</div>
+    </div>
+    <div class="btn-row">
+      <button class="btn" onclick="prev()" ${currentProject === 0 && currentPage === 0 ? 'disabled' : ''}>← Previous</button>
+      <button class="btn btn-primary" onclick="next()" ${currentProject === projects.length - 1 && currentPage === p.pages.length - 1 ? 'disabled' : ''}>Next →</button>
+    </div>
+  `;
+}
+
+function render() { renderSidebar(); renderContent(); }
+function goPage(i) { currentPage = i; render(); }
+function next() {
+  const p = projects[currentProject];
+  if (currentPage < p.pages.length - 1) currentPage++;
+  else if (currentProject < projects.length - 1) { currentProject++; currentPage = 0; }
+  render();
+}
+function prev() {
+  if (currentPage > 0) currentPage--;
+  else if (currentProject > 0) { currentProject--; currentPage = projects[currentProject].pages.length - 1; }
+  render();
+}
+
+render();
+</script>
+</body>
+</html>
